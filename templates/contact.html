@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+
+<div class ="container">
+<h1>Complete this form to contact us. </h1>
+    {%  if form_submitted %}
+        <div class="col-12">
+            <h2> Thank you for submitting</h2>
+        </div>
+        <div class="col-md-6">
+            <p> First Name:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('FirstName') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> Last Name:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('LastName') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> Email Address:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ request.form.get('Email') }}</p>
+        </div>
+        <div class="col-md-6">
+            <p> I want to be contacted:</p>
+        </div>
+        <div class="col-md-6">
+            <p> {{ 'Yes' if request.form.get('agree_check') else 'No' }}</p>
+        </div>
+        <p><a href="{{ url_for('contact') }}"> Complete form again </a></p>
+    {% else %}
+        <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+            <div class="col-md-6">
+                <label for="FirstName" class="form-label"> First Name </label>
+                <input type="text" class="form-control" id="FirstName" name="FirstName">
+            </div>
+            <div class="col-md-6">
+                <label for="LastName" class="form-label"> Last Name </label>
+                <input type="text" class="form-control" id="LastName" name="LastName">
+            </div>
+            <div class="col-12">
+                <label for="EmailAddress" class="form-label"> Email Address </label>
+                <input type="text" class="form-control" id="EmailAddress" name="EmailAddress">
+            </div>
+            <div class="form-check">
+                <label for="form-check-input" class="form-check-input"> I Agree to be contacted.  </label>
+                <input type="checkbox" class="form-control" id="agree_check" name="agree_check">
+            </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    {% endif %}
+</div>
+
+
+</body>
+</html>
