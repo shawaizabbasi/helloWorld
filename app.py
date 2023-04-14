@@ -221,7 +221,7 @@ def page_not_found(e):
 
 @app.route('/training')
 @login_required
-@role_required(['MANAGER', 'Admin'])
+@role_required(['MANAGER', 'ADMIN'])
 def training():
     return render_template('training.html')
 
